@@ -1,26 +1,37 @@
 package com.users.api.models;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import java.io.Serializable;
 
-public class UserEntity {
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-	@NotNull(message="First name cannot be null")
-	@Size(min=2, message="First name must not be less then two characters")
+@Entity
+@Table(name = "USER")
+public class UserEntity implements Serializable {
+
+	private static final long serialVersionUID = 7277368345765773893L;
+
+	@Id
+	@GeneratedValue
+	private long id;
+
+	@Column(nullable = false)
 	private String firstName;
-	
-	@NotNull(message="Last name cannot be null")
-	@Size(min=2, message="Last name must not be less then two characters")
+
+	@Column(nullable = false)
 	private String lastName;
-	
-	@NotNull(message="Password cannot be null")
-	@Size(min=8, max=16, message="Password must not be equal or grater than 8 characters and less than 16 characters")
-	private String password;
-	
-	@NotNull(message="Email cannot be null")
-	@Email
+
+	@Column(nullable = false, unique = true)
 	private String email;
+
+	@Column(nullable = false, unique = true)
+	private String userId;
+
+	@Column(nullable = false, unique = true)
+	private String encryptedPassord;
 
 	public UserEntity() {
 	}
@@ -41,20 +52,36 @@ public class UserEntity {
 		this.lastName = lastName;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getEncryptedPassord() {
+		return encryptedPassord;
+	}
+
+	public void setEncryptedPassord(String encryptedPassord) {
+		this.encryptedPassord = encryptedPassord;
 	}
 
 }
