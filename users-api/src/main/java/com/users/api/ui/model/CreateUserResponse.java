@@ -1,24 +1,11 @@
-package com.users.api.dto;
+package com.users.api.ui.model;
 
-import java.io.Serializable;
-
-public class UserDTO implements Serializable {
-
-	private static final long serialVersionUID = 5255525867150270161L;
+public class CreateUserResponse {
 
 	private String firstName;
-
 	private String lastName;
-
 	private String email;
-
-	private String encryptedPassord;
-
 	private String userId;
-
-	public UserDTO() {
-		super();
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -44,14 +31,6 @@ public class UserDTO implements Serializable {
 		this.email = email;
 	}
 
-	public String getEncryptedPassord() {
-		return encryptedPassord;
-	}
-
-	public void setEncryptedPassord(String encryptedPassord) {
-		this.encryptedPassord = encryptedPassord;
-	}
-
 	public String getUserId() {
 		return userId;
 	}
@@ -59,5 +38,4 @@ public class UserDTO implements Serializable {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-
 }

@@ -1,4 +1,4 @@
-package com.users.api.models;
+package com.users.api.data;
 
 import java.io.Serializable;
 
@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "USER")
+@Table(name="users")
 public class UserEntity implements Serializable {
 
 	private static final long serialVersionUID = 7277368345765773893L;
