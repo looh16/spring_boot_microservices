@@ -4,7 +4,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public class User {
+public class UserEntity {
 
 	@NotNull(message="First name cannot be null")
 	@Size(min=2, message="First name must not be less then two characters")
@@ -22,7 +22,7 @@ public class User {
 	@Email
 	private String email;
 
-	public User() {
+	public UserEntity() {
 	}
 
 	public String getFirstName() {
