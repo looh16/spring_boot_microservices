@@ -1,4 +1,4 @@
-package com.users.api.ui.model;
+ package com.users.api.ui.model;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
