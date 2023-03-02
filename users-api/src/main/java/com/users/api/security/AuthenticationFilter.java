@@ -1,6 +1,7 @@
 package com.users.api.security;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -66,7 +67,9 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 
 		String userName = ((User) auth.getPrincipal()).getUsername();
 		UserDTO userDetails = this.userService.getUserDetailsByEmail(userName);
-		String tokenSecret = environment.getProperty("token.secret");
+		//String tokenSecret = environment.getProperty("token.secret");
+		String tokenSecret= Base64.getEncoder().encodeToString(environment.getProperty("token.secret").getBytes(StandardCharsets.UTF_8));
+
 		byte[] secretKeyBytes = Base64.getEncoder().encode(tokenSecret.getBytes());
 		SecretKey secretKey = new SecretKeySpec(secretKeyBytes, SignatureAlgorithm.HS512.getJcaName());
 

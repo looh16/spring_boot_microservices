@@ -1,5 +1,8 @@
 package com.gateway.api;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
@@ -59,11 +62,17 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
 
 	private boolean isJwtValid(String jwt) {
 		boolean returnValue = true;
+		String tokenSecret= Base64.getEncoder().encodeToString(env.getProperty("token.secret").getBytes(StandardCharsets.UTF_8));
+
+		byte[] secretKeyBytes = Base64.getEncoder().encode(tokenSecret.getBytes());
 
 		String subject = null;
 
 		try {
-			subject = Jwts.parser().setSigningKey(env.getProperty("token.secret")).parseClaimsJws(jwt).getBody()
+			subject = Jwts.parser()
+					.setSigningKey(secretKeyBytes)
+					.parseClaimsJws(jwt)
+					.getBody()
 					.getSubject();
 		} catch (Exception ex) {
 			returnValue = false;

@@ -23,7 +23,7 @@ public class UserController {
 	@Autowired
 	private IUserService userService;
 	
-	@GetMapping("status/check")
+	@GetMapping("/status/check")
 	public String status() {
 		return "OK";
 	}
